@@ -39,12 +39,20 @@ subject { page }
 	describe "profile page" do
 	  # Code to make a user variable
 	  let(:user) { FactoryGirl.create(:user) }
-
-	  before { visit user_path(user) }
+    let!(:m1) { FactoryGirl.create(:micropost, user: user, contents: "Foo") }
+    let!(:m2) { FactoryGirl.create(:micropost, user: user, contents: "Bar") }
+	  
+    before { visit user_path(user) }
 
 	  it { should have_selector('h1',    text: user.name) }
 	  it { should have_selector('title', text: user.name) }
-	end
+	
+  describe "microposts" do
+      it { should have_content(m1.contents) }
+      it { should have_content(m2.contents) }
+      it { should have_content(user.microposts.count) }
+    end
+  end
 
 	
 	describe "signup" do
