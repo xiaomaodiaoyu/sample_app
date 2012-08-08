@@ -26,7 +26,7 @@ end
   # gem 'therubyracer', :platforms => :ruby
 
 
-gem 'jquery-rails', '2.0.0'
+gem 'jquery-rails'#, '2.0.0'
 gem 'annotate', '~> 2.4.1.beta', group: :development
 
 group :test do
